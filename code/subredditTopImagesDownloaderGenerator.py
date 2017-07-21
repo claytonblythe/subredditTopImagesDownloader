@@ -45,7 +45,7 @@ subreddit, numPages, timeFrame = get_args()
 
 # In[12]:
 
-url = "https://www.reddit.com/r/"+ subreddit + "/top/?sort=top&t=" + timeFrame
+url = "https://www.reddit.com/r/{}/top/?sort=top&t={}".format(subreddit,timeFrame)
 s = requests.session()
 r = s.get(url, headers = headers)
 soup = bs(r.text, 'lxml')
@@ -81,7 +81,7 @@ class subredditTopPostsGenerator:
 
 # In[9]:
 
-myurl = 'https://www.reddit.com/r/' + subreddit + "/top/?sort=top&t="+timeFrame
+myurl = url = "https://www.reddit.com/r/{}/top/?sort=top&t={}".format(subreddit,timeFrame)
 myiterator = iter(subredditTopPostsGenerator(myurl))
 
 
