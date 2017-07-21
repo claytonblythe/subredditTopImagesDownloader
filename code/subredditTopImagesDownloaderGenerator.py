@@ -81,7 +81,7 @@ class subredditTopPostsGenerator:
 
 # In[9]:
 
-myurl = url = "https://www.reddit.com/r/{}/top/?sort=top&t={}".format(subreddit,timeFrame)
+myurl =  "https://www.reddit.com/r/{}/top/?sort=top&t={}".format(subreddit,timeFrame)
 myiterator = iter(subredditTopPostsGenerator(myurl))
 
 
