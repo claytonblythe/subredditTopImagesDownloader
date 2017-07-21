@@ -11,7 +11,17 @@ Here is an example of a top post from the r/wallpaper subreddit that is download
 
 ![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/wallpaper/all/i.imgur.com_IB8Sjzt.png)
 
+## Methods
 
+Here I employ the BeautifulSoup library in python to experiment with object oriented programming and generators for building a list of imgur or 
+other readily available image links of popular image posts from a particular subreddit. I use BeautifulSoup to scrape the relevant image links for a 
+specified number of pages from the most voted pages for that subreddit. I use classes and tqdm to provide a progress bar that allows the user to see
+how much estimated time is remaining for downloading the images. The script tests if the files and/or directories exist and creates them if they do not. Additionally, 
+the script checks if the file already exists before downloading. 
+
+I think I could improve my error handling, to incorporate try and except clauses, and maybe work on organizing my object initialization. Regardless, it works currently at a pretty impressive and fast rate, 
+allowing one to easily download the top most popular images from a subreddit over a given timeframe. 
+ 
 ## Usage
 
 To use this utility: 
