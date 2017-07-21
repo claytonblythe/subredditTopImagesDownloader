@@ -11,6 +11,7 @@ Here is an example of a top post from the r/wallpaper subreddit that is download
 
 ![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/wallpaper/all/i.imgur.com_IB8Sjzt.png)
 
+![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/Art/all/i.imgur.com_z0x7G4z.png)
 ## Methods
 
 Here I employ the BeautifulSoup library in python to experiment with object oriented programming and generators for building a list of imgur or 
