@@ -1,4 +1,4 @@
-
+# Subreddit Top Image Downloader
 
 This is a project called subredditTopImagesDownloader created by Clayton Blythe on 2017/07/19 
 
