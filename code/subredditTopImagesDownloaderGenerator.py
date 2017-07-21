@@ -63,8 +63,10 @@ class subredditTopPostsGenerator:
         self.urls += [tag['data-url'] for tag in soup.find_all('div', {"data-domain": "i.imgur.com"}) if tag['data-url'][-3:] in extensions]
         self.urls += [tag['data-url'] for tag in soup.find_all('div', {"data-domain":"i.redd.it"})if tag['data-url'][-3:] in extensions]
         self.urls += [tag['data-url'] for tag in soup.find_all('div', {"data-domain":"cdnb.artstation.com"})if tag['data-url'][-3:] in extensions]
-        self.nextUrl = soup.find_all('span', {"class":"next-button"})[0].find_all('a')[0]['href']
-
+        if numPages > 1:
+            self.nextUrl = soup.find_all('span', {"class":"next-button"})[0].find_all('a')[0]['href']
+        else:
+            self.nextUrl='None'
     def __next__(self):
         temp_r = s.get(self.nextUrl, headers=headers)
         soup = bs(temp_r.text, 'lxml')
@@ -107,8 +109,9 @@ def saveUrls(subreddit, urls):
 
 # In[5]:
 
-for i in range(numPages - 1):
-    next(myiterator)
+if numPages > 1:
+    for i in range(numPages - 1):
+        next(myiterator)
 #print(myiterator.urls)
 
 
