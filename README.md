@@ -6,7 +6,7 @@ Email: blythec1@central.edu
 
 Here is an example of a top post from the r/Art subreddit that is downloaded to the figure directory
 
-![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/Art/cdnb.artstation.com_p_assets_images_images_003_462_039_large_alena-aenami-over-the-city1k.jpg)
+![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/Art/i.imgur.com_tfraio8.png)
 
 
-![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/ArchitecturePorn/i.imgur.com_lZE4fsA.jpg)
+![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/wallpaper/i.imgur.com_IB8Sjzt.png)
