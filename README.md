@@ -31,7 +31,7 @@ To use this utility:
 3. Type "python subredditTopImagesDownloaderGenerator.py" to run the script, which will by default download the images from the top page of all-time most 
 upvoted posts on r/EarthPorn 
 
-If you wish to download from a specific subreddit, over a range of pages, and over a specified time you can specify this with command line arguments of -s, -n, and -t respectively. Below is an example of how you can use this functionality. 
+If you wish to download from a specific subreddit, over a range of pages, and over a specified time you can specify this with command line arguments of -s, -n, and -t respectively. Below is an example of how you can use this functionality to download all the images from the first three pages of the wallpaper subreddit's historical most-upvoted posts. 
 
 ![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/example_script5.png)
 
