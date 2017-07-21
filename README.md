@@ -33,7 +33,7 @@ upvoted posts on r/EarthPorn
 
 If you wish to download from a specific subreddit, over a range of pages, and over a specified time you can specify this with command line arguments of -s, -n, and -t respectively. Below is an example of how you can use this functionality. 
 
-![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/example_script.png)
+![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/example_script2.png)
 
 
 Overall I am very satisfied with the result. I am still learning Python so I am open to any suggestions anyone has to improve performance and/or write better code. 
