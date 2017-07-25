@@ -6,9 +6,9 @@ Email: blythec1@central.edu
 
 Here is an example of a top post from the r/wallpaper subreddit that is downloaded to the figure directory
 
-![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/MinimalWallpaper/all/i.imgur.com_vTMGurl.png)
+![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/figures/figures/MinimalWallpaper/all/i.imgur.com_vTMGurl.png)
 
-![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/wallpaper/all/i.imgur.com_IB8Sjzt.png)
+![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/figures/figures/wallpaper/all/i.imgur.com_IB8Sjzt.png)
 
 ## Methods
 
@@ -32,7 +32,7 @@ upvoted posts on r/EarthPorn
 
 If you wish to download from a specific subreddit, over a range of pages, and over a specified time you can specify this with command line arguments of -s, -n, and -t respectively. Below is an example of how you can use this functionality to download all the images from the first three pages of the wallpaper subreddit's historical most-upvoted posts. 
 
-![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/master/figures/example_script5.png)
+![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/figures/figures/example_script5.png)
 
 
 Overall I am very satisfied with the result. I am still learning Python so I am open to any suggestions anyone has to improve performance and/or write better code. 
