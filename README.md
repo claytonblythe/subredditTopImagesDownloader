@@ -26,7 +26,7 @@ allowing one to easily download the top most popular images from a subreddit ove
 To use this utility: 
 
 1. Type "git clone https://github.com/claytonblythe/subredditTopImagesDownloader.git" in a directory where you want this repository to reside
-2. Type "cd code" to navigate into the directory with the script
+2. Type "cd subredditTopImagesDownloader/code" to navigate into the directory with the script
 3. Type "python subredditTopImagesDownloaderGenerator.py" to run the script, which will by default download the images from the top page of all-time most 
 upvoted posts on r/EarthPorn 
 
