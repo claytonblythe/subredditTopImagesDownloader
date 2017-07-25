@@ -21,6 +21,12 @@ the script checks if the file already exists before downloading.
 I think I could improve my error handling, to incorporate try and except clauses, and maybe work on organizing my object initialization. Regardless, it works currently at a pretty impressive and fast rate, 
 allowing one to easily download the top most popular images from a subreddit over a given timeframe. 
  
+
+## Requirements
+
+Here I am using Python 3.6, with the modules bs4, requests, os, argparse, and tqdm imported. 
+
+
 ## Usage
 
 To use this utility: 
