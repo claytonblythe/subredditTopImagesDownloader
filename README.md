@@ -38,8 +38,7 @@ upvoted posts on r/EarthPorn
 
 If you wish to download from a specific subreddit, over a range of pages, and over a specified time you can specify this with command line arguments of -s, -n, and -t respectively. Below is an example of how you can use this functionality to download all the images from the first three pages of the r/wallpaper subreddit's historical most-upvoted posts. 
 
-![Alt Test](https://github.com/claytonblythe/subredditTopImagesDownloader/blob/figures/figures/example_script5.png)
-
+![Alt Test](https://asciinema.org/a/vZ7wnHS7UCljSW8V4vDWYh747)
 
 Overall I am very satisfied with the result. I am still learning Python so I am open to any suggestions anyone has to improve performance and/or write better code. 
 
