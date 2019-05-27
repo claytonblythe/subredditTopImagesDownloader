@@ -35,19 +35,21 @@ class SubbredditTopPostsGenerator:
         self.next_url = soup.find_all('span', {"class": "next-button"})[0].find_all('a')[0]['href']
 
     async def fetch(self, session, url):
-        timeout = aiohttp.ClientTimeout(total=5)
         try:
-            async with session.get(url, timeout=timeout) as response:
+            async with session.get(url, timeout=None, ssl=False) as response:
                 if response.status != 200:
                     response.raise_for_status()
                 else:
                     filepath = '../figures/' + self.subreddit + '/' + timeframe + '/' + url[7:].replace('/', '_').strip(
                         '_')
+                    buffer = b""
                     if not os.path.exists(os.path.dirname(filepath)):
                         await os.makedirs(os.path.dirname(filepath))
                     if not os.path.exists(filepath):
                         f = await aiofiles.open(filepath, mode='wb')
-                        await f.write(await response.read())
+                        async for chunk in response.content.iter_any():
+                            buffer += chunk
+                        await f.write(buffer)
                         await f.close()
         except Exception as e:
             print(e)
@@ -85,3 +87,5 @@ if __name__ == "__main__":
         next(my_iterator)
 
     my_iterator.async_loop.run_until_complete(my_iterator.fetch_all())
+    print(f"{len(my_iterator.image_urls)} urls in {time.time()-before} seconds")
+    print(len(set(my_iterator.image_urls)))
