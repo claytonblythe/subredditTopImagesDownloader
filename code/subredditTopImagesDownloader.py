@@ -1,8 +1,13 @@
-from bs4 import BeautifulSoup
-import requests
-from tqdm import tqdm
-import os
 import argparse
+import asyncio
+import os
+import os.path
+import time
+
+import aiofiles as aiofiles
+import aiohttp as aiohttp
+import requests
+from bs4 import BeautifulSoup
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -14,6 +19,7 @@ class SubbredditTopPostsGenerator:
         self.image_urls = []
         self.baseUrl = base_url
         self.session = requests.session()
+        self.async_loop = asyncio.get_event_loop()
         self.extensions = ['png', 'jpg', 'jpeg', 'ifv2']
         self.domains = ["i.imgur.com", "i.redd.it", "cdnb.artstation.com"]
         self.subreddit = subreddit
@@ -24,30 +30,33 @@ class SubbredditTopPostsGenerator:
         r = self.session.get(self.next_url, headers=headers)
         soup = BeautifulSoup(r.text, 'lxml')
         self.image_urls += [tag['data-url'] for domain in self.domains for tag in
-                      soup.find_all('div', {"data-domain": domain}) if
-                      tag['data-url'][-3:] in self.extensions]
+                            soup.find_all('div', {"data-domain": domain}) if
+                            tag['data-url'][-3:] in self.extensions]
         self.next_url = soup.find_all('span', {"class": "next-button"})[0].find_all('a')[0]['href']
 
-    def __iter__(self):
-        return self
+    async def fetch(self, session, url):
+        timeout = aiohttp.ClientTimeout(total=5)
+        try:
+            async with session.get(url, timeout=timeout) as response:
+                if response.status != 200:
+                    response.raise_for_status()
+                else:
+                    filepath = '../figures/' + self.subreddit + '/' + timeframe + '/' + url[7:].replace('/', '_').strip(
+                        '_')
+                    if not os.path.exists(os.path.dirname(filepath)):
+                        await os.makedirs(os.path.dirname(filepath))
+                    if not os.path.exists(filepath):
+                        f = await aiofiles.open(filepath, mode='wb')
+                        await f.write(await response.read())
+                        await f.close()
+        except Exception as e:
+            print(e)
 
-    def save_urls(self):
-        if not os.path.exists('../figures/' + subreddit + '/' + timeframe):
-            os.makedirs('../figures/' + subreddit + '/' + timeframe)
-
-        for idx in tqdm(range(len(self.image_urls))):
-            this_image_url = self.image_urls[idx]
-
-            if not os.path.exists(
-                    '../figures/' + subreddit + '/' + timeframe + '/' + this_image_url[7:].replace('/', '_').strip('_')):
-                r = self.session.get(this_image_url, headers=headers, stream=True)
-                with open('../figures/' + subreddit + '/' + timeframe + '/' + this_image_url[7:].replace('/', '_').strip('_'),
-                          'wb') as f:
-                    for chunk in r.iter_content(chunk_size=1024):
-                        if chunk:  # filter out keep-alive new chunks
-                            f.write(chunk)
-            else:
-                continue
+    async def fetch_all(self):
+        async with aiohttp.ClientSession(loop=self.async_loop) as session:
+            results = await asyncio.gather(*[self.async_loop.create_task(self.fetch(session, url))
+                                             for url in self.image_urls])
+        return results
 
 
 def get_args():
@@ -64,14 +73,15 @@ def get_args():
     subreddit = args.subreddit
     num_pages = args.num_pages
     timeframe = args.timeframe
-    return subreddit, num_pages, timeframe
+    return subreddit,  num_pages, timeframe
 
 
 if __name__ == "__main__":
+    before = time.time()
     subreddit, num_pages, timeframe = get_args()
     base_url = f"https://old.reddit.com/r/{subreddit}/top/?sort=top&t={timeframe}"
-    my_iterator = iter(SubbredditTopPostsGenerator(base_url, subreddit))
+    my_iterator = SubbredditTopPostsGenerator(base_url, subreddit)
     for _ in range(num_pages):
         next(my_iterator)
 
-    my_iterator.save_urls()
+    my_iterator.async_loop.run_until_complete(my_iterator.fetch_all())
